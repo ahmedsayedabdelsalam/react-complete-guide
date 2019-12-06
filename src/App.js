@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.css';
 import Person from './Person/Person'
-import Radium, { StyleRoot } from 'radium'
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 class App extends Component {
   state = {
@@ -32,20 +32,7 @@ class App extends Component {
   }
 
   render() {
-    const buttonStyle = {
-      backgroundColor: 'green',
-      color: 'white',
-      margin: '10px',
-      padding: '10px',
-      border: '1px solid blue',
-      cursor: 'pointer',
-      font: 'inherit',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
-
+    let btnClasses = ''
     let persons = null
     if (this.state.showPersons) {
       persons = this.state.persons.map(
@@ -57,26 +44,24 @@ class App extends Component {
             changeName={(event) => this.changeNameHandler(event, person.id)}
             deletePerson={() => this.deletePersonHandler(person.id)} />
       )
-
-      buttonStyle.backgroundColor = 'red'
-      buttonStyle[':hover'].backgroundColor = 'salmon'
+      btnClasses = classes.Red
     }
 
-    const paragraphClassed = []
-    if (this.state.persons.length <= 2) paragraphClassed.push('red')
-    if (this.state.persons.length <= 1) paragraphClassed.push('bold')
+    const paragraphClasse = []
+    if (this.state.persons.length <= 2) paragraphClasse.push(classes.red)
+    if (this.state.persons.length <= 1) paragraphClasse.push(classes.bold)
 
     return (
-      <StyleRoot>
-        <div className="App">
+      <ErrorBoundary>
+        <div className={classes.App}>
           <h1>Hi I'm a React App</h1>
-          <p className={paragraphClassed.join(' ')}>This is really working!</p>
-          <button onClick={this.togglePersonsHandler} style={buttonStyle}>Toggle Persons</button>
+          <p className={paragraphClasse.join(' ')}>This is really working!</p>
+          <button className={btnClasses} onClick={this.togglePersonsHandler}>Toggle Persons</button>
           {persons}
         </div>
-      </StyleRoot>
+      </ErrorBoundary>
     );
   }
 }
 
-export default Radium(App);
+export default App;
