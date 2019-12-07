@@ -1,5 +1,6 @@
 import React from 'react'
 import Person from './Person/Person'
+import withClasses from '../../hoc/withClasses'
 
 const Persons = (props) => {
   return props.persons.map(
@@ -13,4 +14,4 @@ const Persons = (props) => {
   )
 }
 
-export default Persons
+export default withClasses(Persons)

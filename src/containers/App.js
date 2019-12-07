@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import classes from './App.module.css';
 import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
+import Aux from '../hoc/Aux'
+// import WithClassesComponent from '../hoc/WithClassesComponent'
+import withClasses from '../hoc/withClasses'
 
 class App extends Component {
   state = {
@@ -42,12 +45,16 @@ class App extends Component {
       )
     }
     return (
-      <div className={classes.App}>
+      // <div className={classes.App}>
+      <Aux>
+        {/* <WithClassesComponent classes={classes.App}> */}
         <Cockpit persons={this.state.persons} showPersons={this.state.showPersons} click={this.togglePersonsHandler} />
         {persons}
-      </div>
+        {/* </WithClassesComponent> */}
+      </Aux>
+      // </div>
     );
   }
 }
 
-export default App;
+export default withClasses(App, classes.App);
