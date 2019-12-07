@@ -31,7 +31,9 @@ class App extends Component {
   }
 
   togglePersonsHandler = () => {
-    this.setState({ showPersons: !this.state.showPersons })
+    // this.setState({ showPersons: !this.state.showPersons })
+    // better approach for accessing prev state to avoid changing from any where at same time
+    this.setState((pervState, props) => ({ showPersons: !pervState.showPersons }))
   }
 
   render() {
