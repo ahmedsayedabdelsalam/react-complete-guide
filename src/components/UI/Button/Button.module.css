@@ -1,13 +1,20 @@
 .button {
-  cursor: pointer;
-  padding: 0 10%;
-  background-color: transparent;
-  font-weight: bold;
-  border: none;
+    cursor: pointer;
+    padding: 0 10%;
+    background-color: transparent;
+    font-weight: bold;
+    border: none;
 }
+
 .success {
-  color: green;
+    color: green;
 }
+
 .danger {
-  color: red;
+    color: red;
+}
+
+.button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
 }

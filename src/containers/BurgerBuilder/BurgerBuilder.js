@@ -27,15 +27,23 @@ class BurgerBuilder extends Component {
     }
 
     getIngredients = () => {
-        this.setState({ fetchingIngredients: true })
-        axios.get('/ingredients.json')
-            .then(response => {
-                this.setState({ ingredients: response.data, fetchingIngredients: false })
-            })
-            .catch(error => {
-                this.setState({ error: true, fetchingIngredients: false })
-                console.log(error)
-            })
+        // this.setState({ fetchingIngredients: true })
+        // axios.get('/ingredients.json')
+        //     .then(response => {
+        //         this.setState({ ingredients: response.data, fetchingIngredients: false })
+        //     })
+        //     .catch(error => {
+        //         this.setState({ error: true, fetchingIngredients: false })
+        //         console.log(error)
+        //     })
+        this.setState({
+            ingredients: {
+                salad: 0,
+                bacon: 0,
+                meat: 1,
+                cheese: 0
+            }
+        })
     }
 
     purchasingHandler = () => {
